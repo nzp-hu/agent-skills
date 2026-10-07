@@ -74,7 +74,7 @@ def list_entry(path: Path) -> dict:
     and a flat block list (alternate_urls: with '  - ' items). Everything
     else is ignored. Validated against all product files by `check`.
     """
-    fm = frontmatter_block(path.read_text())
+    fm = frontmatter_block(path.read_text(encoding="utf-8"))
     entry = {"slug": path.stem, "title": None, "aliases": []}
     if fm is None:
         entry["error"] = "no frontmatter"
@@ -133,7 +133,7 @@ def cmd_get(products_dir: Path, slug: str, full: bool) -> None:
             "Run list --grep for the canonical set.",
             3,
         )  # exit 3
-    parts = path.read_text().split("---", 2)
+    parts = path.read_text(encoding="utf-8").split("---", 2)
     print("---" + parts[1] + "---")
     if full and len(parts) > 2:
         print(parts[2])
