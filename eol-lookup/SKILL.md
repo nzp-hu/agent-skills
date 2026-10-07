@@ -3,16 +3,16 @@ name: eol-lookup
 description: Look up end-of-life and release dates for software products
   offline, from a cached snapshot of endoflife.date. Use for EOL dates,
   support timelines, version lifecycles, and "is X still supported" questions.
-allowed-tools: Bash(python3 ${CLAUDE_SKILL_DIR}/scripts/eol.py *)
+allowed-tools: Bash(python ${CLAUDE_SKILL_DIR}/scripts/eol.py *)
 ---
 
 ## Workflow
 
-1. Run `python3 scripts/eol.py list --grep <term>` (term = the user's product
+1. Run `python scripts/eol.py list --grep <term>` (term = the user's product
    name, or a keyword from it). Output is JSON lines: slug, title, aliases.
 2. Match the user's product to a slug using title and aliases. If multiple
    candidates match, ask the user to pick; never guess.
-3. Run `python3 scripts/eol.py get <slug>` — it prints the product's raw
+3. Run `python scripts/eol.py get <slug>` — it prints the product's raw
    YAML frontmatter (release cycles with `releaseDate`, `latest`, `eol`).
    Add `--full` to include the prose body, which often states the release
    policy. Present a readable table to the user.
@@ -25,8 +25,8 @@ allowed-tools: Bash(python3 ${CLAUDE_SKILL_DIR}/scripts/eol.py *)
 
 ## Scripts
 
-- `python3 scripts/eol.py list --grep PATTERN [--limit N] [--offset N]`
-- `python3 scripts/eol.py get <slug> [--full]`
+- `python scripts/eol.py list --grep PATTERN [--limit N] [--offset N]`
+- `python scripts/eol.py get <slug> [--full]`
 
 ## Refreshing data
 

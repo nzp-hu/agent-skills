@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """eol.py — offline end-of-life lookup for endoflife.date products.
 
 Usage:
